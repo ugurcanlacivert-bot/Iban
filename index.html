@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mihriban Dal - IBAN</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #eef2ff, #f8fafc);
+  font-family: Arial, sans-serif;
+  color: #111827;
+}
+
+.card {
+  width: calc(100% - 32px);
+  max-width: 430px;
+  background: white;
+  padding: 30px 22px;
+  border-radius: 22px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.10);
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: 26px;
+}
+
+.subtitle {
+  color: #6b7280;
+  margin-bottom: 25px;
+}
+
+.iban {
+  background: #f3f4f6;
+  padding: 18px 12px;
+  border-radius: 14px;
+  font-size: 17px;
+  font-weight: bold;
+  letter-spacing: 0.8px;
+  word-break: break-all;
+  margin-bottom: 18px;
+}
+
+button {
+  width: 100%;
+  padding: 16px;
+  border: 0;
+  border-radius: 13px;
+  background: #2563eb;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+#message {
+  margin-top: 15px;
+  color: #16a34a;
+  font-weight: bold;
+  min-height: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>Mihriban Dal</h1>
+  <div class="subtitle">Banka Hesap Bilgisi</div>
+
+  <div class="iban" id="iban">
+    TR33 0004 6006 2788 8000 0883 79
+  </div>
+
+  <button onclick="copyIBAN()">
+    IBAN'ı Kopyala
+  </button>
+
+  <div id="message"></div>
+</div>
+
+<script>
+function copyIBAN() {
+  const iban = "TR330004600627888000088379";
+
+  navigator.clipboard.writeText(iban)
+    .then(function() {
+      document.getElementById("message").textContent =
+        "IBAN panoya kopyalandı ✓";
+    })
+    .catch(function() {
+      const textArea = document.createElement("textarea");
+      textArea.value = iban;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      textArea.remove();
+
+      document.getElementById("message").textContent =
+        "IBAN panoya kopyalandı ✓";
+    });
+}
+</script>
+
+</body>
+</html>
