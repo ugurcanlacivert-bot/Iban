@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mihriban Dal - IBAN</title>
+
+<title>Uğurcan Şahin - IBAN</title>
 
 <style>
 * {
@@ -16,7 +17,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #eef2ff, #f8fafc);
+  background: linear-gradient(135deg, #fff4e6, #f8fafc);
   font-family: Arial, sans-serif;
   color: #111827;
 }
@@ -31,6 +32,29 @@ body {
   text-align: center;
 }
 
+/* ING Logo */
+.ing-logo {
+  width: 82px;
+  height: 82px;
+  margin: 0 auto 18px;
+  background: #ff6200;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+
+.bank-name {
+  color: #ff6200;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
 h1 {
   margin: 0 0 8px;
   font-size: 26px;
@@ -42,7 +66,8 @@ h1 {
 }
 
 .iban {
-  background: #f3f4f6;
+  background: #fff3eb;
+  border: 1px solid #ffd5bd;
   padding: 18px 12px;
   border-radius: 14px;
   font-size: 17px;
@@ -57,7 +82,7 @@ button {
   padding: 16px;
   border: 0;
   border-radius: 13px;
-  background: #2563eb;
+  background: #ff6200;
   color: white;
   font-size: 17px;
   font-weight: bold;
@@ -80,11 +105,23 @@ button:active {
 <body>
 
 <div class="card">
-  <h1>Mihriban Dal</h1>
-  <div class="subtitle">Banka Hesap Bilgisi</div>
+
+  <div class="ing-logo">
+    ING
+  </div>
+
+  <div class="bank-name">
+    ING Bankası
+  </div>
+
+  <h1>Uğurcan Şahin</h1>
+
+  <div class="subtitle">
+    Banka Hesap Bilgisi
+  </div>
 
   <div class="iban" id="iban">
-    TR33 0004 6006 2788 8000 0883 79
+    TR43 0009 9027 6506 3800 1000 01
   </div>
 
   <button onclick="copyIBAN()">
@@ -92,27 +129,38 @@ button:active {
   </button>
 
   <div id="message"></div>
+
 </div>
 
 <script>
 function copyIBAN() {
-  const iban = "TR330004600627888000088379";
+
+  const iban = "TR430009902765063800100001";
 
   navigator.clipboard.writeText(iban)
     .then(function() {
+
       document.getElementById("message").textContent =
         "IBAN panoya kopyalandı ✓";
+
     })
     .catch(function() {
+
       const textArea = document.createElement("textarea");
+
       textArea.value = iban;
+
       document.body.appendChild(textArea);
+
       textArea.select();
+
       document.execCommand("copy");
+
       textArea.remove();
 
       document.getElementById("message").textContent =
         "IBAN panoya kopyalandı ✓";
+
     });
 }
 </script>
